@@ -1,5 +1,7 @@
 ## Reflected XSS with event handlers and href attributes blocked
 
+- - - LEVEL: Expert
+
 - PoC:
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-25/PoC/Lab-25-Expert-Reflected-XSS-with-event-handlers-and-href-attributes-blocked.gif)
