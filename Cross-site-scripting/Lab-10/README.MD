@@ -4,7 +4,9 @@
 
 - PoC: [href](https://streamable.com/qsd7nx)
 
-![]()
+![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-10/Docs/Screenshot%202022-04-14%20134303.png)
+
+![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-10/Docs/Screenshot%202022-04-14%20134303.png)
 
 ## ATTENTION:
 Please `try` to solve the riddle yourself!
