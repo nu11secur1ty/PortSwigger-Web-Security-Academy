@@ -1,6 +1,6 @@
 ## Reflected XSS with event handlers and href attributes blocked
 
-- - - LEVEL: Expert
+- - - LEVEL: `Expert`
 
 - PoC:
 
