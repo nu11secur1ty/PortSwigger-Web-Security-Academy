@@ -2,7 +2,7 @@
 
 - - - LEVEL: `PRACTITIONER`
 
-- PoC: [href](https://streamable.com/qsd7nx)
+- PoC: [href](https://streamable.com/p4uzp5)
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-10/Docs/Screenshot%202022-04-14%20134303.png)
 
