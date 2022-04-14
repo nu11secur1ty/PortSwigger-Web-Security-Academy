@@ -4,6 +4,8 @@
 
 - PoC:
 
+![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-26/Docs/Screenshot%202022-04-14%20143531.png)
+
 ![]()
 
 ## ATTENTION:
