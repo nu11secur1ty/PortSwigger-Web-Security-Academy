@@ -4,7 +4,7 @@
 
 - PoC:
 
-![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-25/PoC/Lab-25-Expert-Reflected-XSS-with-event-handlers-and-href-attributes-blocked.gif)
+[![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Cross-site-scripting/Lab-25/PoC/Lab-25-Expert-Reflected-XSS-with-event-handlers-and-href-attributes-blocked.gif)](https://portswigger.net/web-security/cross-site-scripting/contexts/lab-event-handlers-and-href-attributes-blocked)
 
 ## ATTENTION:
 Please `try` to solve the riddle yourself!
