@@ -1,1 +1,1 @@
-## [Server-side template injection](https://portswigger.net/web-security/all-labs)
+## [Server-side-template-injection](https://portswigger.net/web-security/all-labs)
