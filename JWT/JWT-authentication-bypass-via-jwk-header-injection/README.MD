@@ -6,5 +6,9 @@
 ## Learning materials:
 [href](https://portswigger.net/web-security/jwt)
 
+## Need to install:
+[href](https://portswigger.net/bappstore/26aaa5ded2f74beea19e2ed8345a93dd)
+
+
 ## Proof and Exploit:
 [href](https://streamable.com/y6wbz3)
