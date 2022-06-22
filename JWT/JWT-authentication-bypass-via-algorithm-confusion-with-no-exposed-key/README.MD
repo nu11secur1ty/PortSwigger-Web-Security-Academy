@@ -5,5 +5,8 @@
 ## Useful info:
 [href](https://blog.silentsignal.eu/2021/02/08/abusing-jwt-public-keys-without-the-public-key/)
 
+## Learning materials:
+[href](https://portswigger.net/web-security/jwt)
+
 ## Proof and Exploit:
 [href](https://streamable.com/novtg4)
