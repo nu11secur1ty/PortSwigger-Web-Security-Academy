@@ -8,5 +8,8 @@
 ## Learning materials:
 [href](https://portswigger.net/web-security/jwt)
 
+## Documentation:
+[href](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/tree/main/JWT/JWT-authentication-bypass-via-algorithm-confusion-with-no-exposed-key/Docs)
+
 ## Proof and Exploit:
 [href](https://streamable.com/novtg4)
