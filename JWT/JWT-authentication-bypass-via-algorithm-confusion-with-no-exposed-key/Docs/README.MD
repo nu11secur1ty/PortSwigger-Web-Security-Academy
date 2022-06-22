@@ -20,8 +20,11 @@ to Base64
 ```
 
 Test key if is ok
-/my-account 
-responce 200
+
+```GET
+/my-account
+```
+Output: `response 200`
 
 
 ### Docker
