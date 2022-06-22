@@ -6,4 +6,4 @@
 [href](https://blog.silentsignal.eu/2021/02/08/abusing-jwt-public-keys-without-the-public-key/)
 
 ## Proof and Exploit:
-[href]()
+[href](https://streamable.com/novtg4)
