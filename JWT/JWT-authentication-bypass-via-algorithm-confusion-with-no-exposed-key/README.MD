@@ -11,5 +11,8 @@
 ## Documentation:
 [href](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/tree/main/JWT/JWT-authentication-bypass-via-algorithm-confusion-with-no-exposed-key/Docs)
 
+## More:
+[href](https://github.com/nu11secur1ty/rsa_sign2n)
+
 ## Proof and Exploit:
 [href](https://streamable.com/k94mnr)
