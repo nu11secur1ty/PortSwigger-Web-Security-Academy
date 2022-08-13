@@ -1,0 +1,22 @@
+### WORK
+
+1. ## Chenge to POST 
+
+Connection: close
+Content-Type: application/x-www-form-urlencoded
+Content-Length: CORRECT
+
+GET /hopefully404 HTTP/1.1
+Foo: x
+
+
+2. /resources/images/blog.svg
+
+
+3. ## Keep alive
+
+Connection: keep-alive
+Content-Length: 54
+
+GET /admin/delete?username=carlos HTTP/1.1
+Foo: x
