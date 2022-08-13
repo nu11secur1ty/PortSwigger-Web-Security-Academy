@@ -2,5 +2,8 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/HTTP-Host-header-attacks/Host-validation-bypass-via-connection-state-attack/Docs/Screenshot%202022-08-13%20231429.png)
 
+## Learning:
+[href](https://portswigger.net/web-security/host-header)
+
 ## Proof and Exploit:
 [href](https://streamable.com/60olh7)
