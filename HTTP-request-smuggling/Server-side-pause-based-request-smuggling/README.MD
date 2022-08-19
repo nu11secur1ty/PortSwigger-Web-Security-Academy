@@ -6,5 +6,6 @@
 
 ## Proof and Exploit:
 
-- `nu11secur1ty` `GET /nu11secur1ty` method searching
+- `GET /nu11secur1ty` method searching
+
 [href](https://streamable.com/0uxdxd)
