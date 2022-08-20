@@ -11,8 +11,10 @@
 [href](https://streamable.com/0uxdxd)
 
 ## IMPORTANT! LEARNING HOW TO PROTECT YOUR HEADERS AND ETC:
+## Apache is free software and no one care about your problems!
+## Go there and fix them alone or you hire professionalists to do this!
 
-![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/HTTP-request-smuggling/Server-side-pause-based-request-smuggling/Docs/mod_Perl-Apache.png)
+[![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/HTTP-request-smuggling/Server-side-pause-based-request-smuggling/Docs/mod_Perl-Apache.png)](https://perl.apache.org/)
 
 [href](https://perl.apache.org/docs/1.0/guide/snippets.html)
 
