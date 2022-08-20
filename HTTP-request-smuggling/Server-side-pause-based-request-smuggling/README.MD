@@ -9,3 +9,6 @@
 - `GET /nu11secur1ty` Headers method searching
 
 [href](https://streamable.com/0uxdxd)
+
+## IMPORTANT! LEARNING HOW TO PROTECT YOUR HEADERS AND ETC:
+[href](https://perl.apache.org/docs/1.0/guide/snippets.html)
