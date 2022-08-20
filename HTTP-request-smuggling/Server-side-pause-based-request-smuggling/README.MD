@@ -11,6 +11,9 @@
 [href](https://streamable.com/0uxdxd)
 
 ## IMPORTANT! LEARNING HOW TO PROTECT YOUR HEADERS AND ETC:
+
+![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/HTTP-request-smuggling/Server-side-pause-based-request-smuggling/Docs/mod_Perl-Apache.png)
+
 [href](https://perl.apache.org/docs/1.0/guide/snippets.html)
 
 [href](https://perl.apache.org/)
