@@ -6,4 +6,4 @@
 [href](https://portswigger.net/web-security/host-header)
 
 ## Proof and Exploit:
-[href](https://streamable.com/60olh7)
+[href](https://www.youtube.com/watch?v=PuwzBfkX4EQ)
