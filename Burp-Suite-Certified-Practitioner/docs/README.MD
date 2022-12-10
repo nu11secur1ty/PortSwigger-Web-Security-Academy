@@ -91,4 +91,3 @@ Cookie: _lab=46%7cMCwCFHRmGbJvWD83sGJweBsiDTK4uwjJAhREJY7dRXWQs4BBUBb1GL29u8rltq
 - The answer will be encrypted.
 answer=y1schUR0z7Z9dbqLfwX4rmZFd8NnVc4pJfU3tvhqzwc=
 ```
-![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Burp-Suite-Certified-Practitioner/docs/Certified-Practitioner.gif)
