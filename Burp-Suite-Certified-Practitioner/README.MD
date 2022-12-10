@@ -83,5 +83,6 @@ POST /submitSolution HTTP/1.1
 Host: ac351fcc1f7cc747c0be0124004c0005.web-security-academy.net
 Cookie: _lab=46%7cMCwCFHRmGbJvWD83sGJweBsiDTK4uwjJAhREJY7dRXWQs4BBUBb1GL29u8rltqBNSbQvwVMR%2f9LVBAhVe1zcqQBR4hhmDGeLvwixznTtC0dEsAfRJMWjJon387vjohx0Y3TPv8JhXwOrMmjarHJkOy%2fEz2k2MTrIGqhL922Oc8E5610%3d; session=k2tC5PLZFrfYHyxsfTnq4lnzczQAhLWk
 
-answer=NMN8OGrvOL0ehJ5wqoNWIGTWPwaTZZ8Z
+- The answer will be encrypted.
+answer=y1schUR0z7Z9dbqLfwX4rmZFd8NnVc4pJfU3tvhqzwc=
 ```
