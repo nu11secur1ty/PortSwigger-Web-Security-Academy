@@ -14,5 +14,5 @@
 ## More:
 [href](https://github.com/nu11secur1ty/rsa_sign2n)
 
-## Proof and Exploit:
-[href](https://streamable.com/k94mnr)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab_22.html)
