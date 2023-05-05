@@ -8,5 +8,5 @@
 ## M0r3:
 [href](https://www.nu11secur1ty.com/search?q=PortSwigger)
 
-## Proof and Exploit:
-[href](https://streamable.com/220i5z)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-jwt-authentication_21.html)
