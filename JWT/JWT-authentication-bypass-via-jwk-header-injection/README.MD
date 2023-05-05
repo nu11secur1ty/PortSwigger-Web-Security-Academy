@@ -10,5 +10,5 @@
 [href](https://portswigger.net/bappstore/26aaa5ded2f74beea19e2ed8345a93dd)
 
 
-## Proof and Exploit:
-[href](https://streamable.com/y6wbz3)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-jwt-authentication_20.html)
