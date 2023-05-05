@@ -2,5 +2,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Business-logic-vulnerabilities/Authentication-bypass-via-encryption-oracle/Docs/Screenshot%202022-06-07%20144056.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/zl15x6)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab.html)
