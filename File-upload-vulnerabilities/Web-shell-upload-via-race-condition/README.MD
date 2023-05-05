@@ -2,5 +2,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/File-upload-vulnerabilities/Web-shell-upload-via-race-condition/Docs/Screenshot%202022-06-09%20123622.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/gq50d3)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-web-shell-upload-via.html)
