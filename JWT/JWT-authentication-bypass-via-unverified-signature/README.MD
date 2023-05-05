@@ -6,5 +6,5 @@
 ## Need to install:
 [href](https://portswigger.net/bappstore/26aaa5ded2f74beea19e2ed8345a93dd)
 
-## Prrof and Exploit:
-[href](https://streamable.com/0txkb7)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-wt-authentication.html)
