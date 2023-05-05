@@ -6,5 +6,5 @@
 - This is a very specific laboratory, please use your minds! =)
 - KR
 
-## Proof and Exploit:
-[href](https://streamable.com/j6j0g4)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-infinite-money-logic.html)
