@@ -7,4 +7,4 @@
 
 
 ## More info:
-[htrf](https://www.nu11secur1ty.com/2022/06/portswigger-lab-wt-authentication_15.html)
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-wt-authentication_15.html)
