@@ -2,5 +2,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Web-cache-poisoning/Web-cache-poisoning-via-an-unkeyed-query-string/Docs/Screenshot%202022-05-28%20093116.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/fno7c7)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/05/portswigger-labweb-cache-poisoning-via.html)
