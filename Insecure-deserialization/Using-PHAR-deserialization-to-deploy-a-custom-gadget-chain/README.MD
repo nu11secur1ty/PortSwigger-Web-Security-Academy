@@ -2,5 +2,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Insecure-deserialization/Using-PHAR-deserialization-to-deploy-a-custom-gadget-chain/Docs/Screenshot%202022-06-05%20094409.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/qbu943)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-using-phar.html)
