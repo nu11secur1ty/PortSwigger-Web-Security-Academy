@@ -6,7 +6,7 @@
 ## NOTE:
 You can see what exactly it is in the video! =)
 
-## How to:
-[href](https://streamable.com/4xcli0)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/05/blog-post.html)
 
 BR
