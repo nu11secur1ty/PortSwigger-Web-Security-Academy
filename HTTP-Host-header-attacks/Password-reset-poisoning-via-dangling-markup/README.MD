@@ -2,5 +2,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/HTTP-Host-header-attacks/Password-reset-poisoning-via-dangling-markup/Docs/Screenshot%202022-06-08%20134729.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/h4lyje)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/06/portswigger-lab-password-reset.html)
