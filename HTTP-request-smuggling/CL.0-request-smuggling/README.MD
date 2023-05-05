@@ -6,4 +6,4 @@
 [href](https://portswigger.net/research/browser-powered-desync-attacks#cl.0)
 
 ## Proof and Exploit:
-[href](https://streamable.com/4s3k82)
+[href](https://www.nu11secur1ty.com/2022/08/portswigger-lab-cl0-request-smuggling.html)
