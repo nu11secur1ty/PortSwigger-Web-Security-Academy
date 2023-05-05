@@ -4,5 +4,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/Server-side-template-injection/Server-side-template-injection-using-documentation/Docs/Screenshot%202022-05-10%20192234.png)
 
-## PoC:
-[href](https://streamable.com/hmwwux)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/05/server-side-template-injection-using.html)
