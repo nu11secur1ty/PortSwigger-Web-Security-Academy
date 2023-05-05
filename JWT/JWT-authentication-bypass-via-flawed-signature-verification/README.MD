@@ -6,5 +6,5 @@
 [href](https://portswigger.net/web-security/jwt)
 
 
-## Proof and Exploi:
-[htrf](https://streamable.com/ii3cqu)
+## More info:
+[htrf](https://www.nu11secur1ty.com/2022/06/portswigger-lab-wt-authentication_15.html)
