@@ -4,5 +4,5 @@
 
 ![](https://github.com/nu11secur1ty/PortSwigger-Web-Security-Academy/blob/main/WebSockets/Cross-site-WebSocket-hijacking/Docs/Screenshot%202022-05-27%20143639.png)
 
-## Proof and Exploit:
-[href](https://streamable.com/5rmfp2)
+## More info:
+[href](https://www.nu11secur1ty.com/2022/05/cross-site-websocket-hijacking.html)
