@@ -1,1 +1,1 @@
-## script
+## Python script
