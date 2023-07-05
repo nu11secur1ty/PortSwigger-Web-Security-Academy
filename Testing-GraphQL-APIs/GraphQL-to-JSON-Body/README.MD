@@ -1,4 +1,4 @@
-***Python script***
+***Python script for Windows 11***
 
 ## Need to install
 
