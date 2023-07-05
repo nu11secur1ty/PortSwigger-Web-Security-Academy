@@ -4,6 +4,8 @@
 ```python
 pip install selenium
 pip3 install selenium
+# Update
+pip3 install -U selenium
 ```
 ## Usage:
 ```python
