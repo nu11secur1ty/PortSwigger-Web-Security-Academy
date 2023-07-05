@@ -10,6 +10,4 @@ pip install selenium
 python convert.py
 ```
 
-***Python script for Ubuntu 23.x***
-
 BR =)
