@@ -1,6 +1,6 @@
 metadata:
     language: v2-beta
-    name: "Basic SQLi Checker"
+    name: "Bypass login SQLi Checker"
     description: "Bypass authentication SQLi"
     author: "nu11secur1ty"
 
