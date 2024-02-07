@@ -19,5 +19,5 @@ given query insertion point then
         report issue:
             severity: high
             confidence: certain
-            detail: "We found SQLi bypass authentication Injection {payloads}"
+            detail: "We found SQLi bypass authentication Injection"
     end if
