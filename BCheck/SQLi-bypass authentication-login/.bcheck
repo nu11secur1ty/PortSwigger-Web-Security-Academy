@@ -18,5 +18,5 @@ given query insertion point then
         report issue:
             severity: high
             confidence: certain
-            detail: "We found SQLi bypass authentication Injection"
+            detail: "Found a vulnerable post parameter that got SQLi bypass authentication vulnerability. The payload nu11secur1ty' or 1=1# was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
     end if
