@@ -23,5 +23,5 @@ given query insertion point then
             severity: high
             confidence: certain
             detail: "Found a vulnerable post parameter that got SQLi bypass authentication vulnerability.
-                     The payload nu11secur1ty' or 1=1# was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
+                     The payload "'" was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
     end if
