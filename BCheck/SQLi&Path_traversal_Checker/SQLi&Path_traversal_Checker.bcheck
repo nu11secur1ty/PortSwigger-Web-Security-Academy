@@ -58,7 +58,7 @@ given query insertion point then
     if {check} differs from {base} then
         report issue:
             severity: high
-            confidence: curtain
-            detail: "Potential SQL Injection detected. Confirm manually.."
+            confidence: certain
+            detail: "Potential SQL Injection detected. Confirm manually..
                      The payload (') was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
     end if
