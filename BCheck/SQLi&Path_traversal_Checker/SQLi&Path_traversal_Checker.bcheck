@@ -1,7 +1,7 @@
 metadata:
     language: v2-beta
-    name: "SQLi&Path_traversal_Checker"
-    description: "Bypass authentication SQLi"
+    name: "SQLi_Checker"
+    description: "SQLi_Checker"
     author: "nu11secur1ty"
 
 run for each:
@@ -58,7 +58,7 @@ given query insertion point then
     if {check} differs from {base} then
         report issue:
             severity: high
-            confidence: certain
-            detail: "Found a vulnerable post parameter that got SQLi bypass authentication vulnerability.
+            confidence: curtain
+            detail: "Potential SQL Injection detected at {check}. Confirm manually..
                      The payload (') was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
     end if
