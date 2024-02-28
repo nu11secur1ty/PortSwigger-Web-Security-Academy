@@ -1,7 +1,7 @@
 metadata:
     language: v2-beta
-    name: "SQLi_Bypass_Authentication_Login_Checker"
-    description: "SQLi_Bypass_Authentication_Login_Checker"
+    name: "SQLi_BCheck"
+    description: "SQLi_BCheck"
     author: "nu11secur1ty"
 
 run for each:
@@ -52,6 +52,7 @@ given query insertion point then
         report issue:
             severity: high
             confidence: certain
-            detail: "Potential SQLi Bypass Authentication Login detected. Please confirm it manually..
-                     The payload (') was submitted in a POST + GET request. You must test manually to confirm this vulnerability!"
+            detail: "Potential SQLi detected. Please confirm it manually..
+                     The payload from the SQLi_BCheck module was submitted successfully after the test. 
+                     You must test manually to confirm this vulnerability!"
     end if
