@@ -11,12 +11,12 @@ given query or body insertion point then
     send payload called check:
         appending: {puncher}
 
-    if {check.response.body} matches "(SQL|Postgresql|Microsoft Sql|sql|postgresql|microsoft sql)" then
+    if {check.response.body} matches "(SQL|Postgresql|Microsoft Sql|sql|postgresql|microsoft SQL)" then
         report issue:
             severity: high
             confidence: firm
             detail: `There is a change in response when {puncher} is injected.`
-            remediation:"Potential SQLi detected. Please confirm it manually..
-                         The payload from the SQLi_BCheck module was submitted successfully after the test. 
+            remediation: "Potential SQLi detected. Please confirm it manually...
+                         The payload from the SQLi_BCheck_Bypass_Autentication module was submitted successfully after the test. 
                          You must test manually to confirm this vulnerability!"
     end if
