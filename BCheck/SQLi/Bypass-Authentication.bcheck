@@ -5,7 +5,7 @@ metadata:
     author: "nu11secur1tuy"
 
 run for each:
-    puncher = "nu11secur1ty' or 1=1#","'","'+OR+1=1--"
+    puncher = "nu11secur1ty' or 1=1#","'","'+OR+1=1--","'+(select*from(select(sleep(20)))a)+'"
 
 given query or body insertion point then
     send payload called check:
@@ -16,5 +16,7 @@ given query or body insertion point then
             severity: high
             confidence: firm
             detail: `There is a change in response when {puncher} is injected.`
-            remediation: "Ensure your git directories are not exposed."
+            remediation:"Potential SQLi detected. Please confirm it manually..
+                         The payload from the SQLi_BCheck module was submitted successfully after the test. 
+                         You must test manually to confirm this vulnerability!"
     end if
