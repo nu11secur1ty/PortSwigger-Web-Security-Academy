@@ -16,7 +16,7 @@ given query or body insertion point then
             severity: high
             confidence: firm
             detail: `There is a change in response when {puncher} is injected.`
-            remediation: "Potential SQLi detected. Please confirm it manually...
-                         The payload from the SQLi_BCheck_Bypass_Autentication module was submitted successfully after the test. 
-                         You must test manually to confirm this vulnerability!"
+            remediation: "Potential SQLi detected in username or username parameter. Please confirm it manually... 
+            The payload from the puncher_SQLi_bypass_authentication module was submitted successfully after the test. 
+            You must test manually to confirm this vulnerability!"
     end if
