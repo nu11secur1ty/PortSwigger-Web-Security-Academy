@@ -1,7 +1,7 @@
 metadata:
     language: v2-beta
-    name: "SQLi_BCheck"
-    description: "SQLi_BCheck"
+    name: "File_path_traversal_BCheck"
+    description: "File_path_traversal_BCheck"
     author: "nu11secur1ty"
 
 run for each:
@@ -56,7 +56,7 @@ given query insertion point then
         report issue:
             severity: high
             confidence: certain
-            detail: "Potential SQLi detected. Please confirm it manually..
-                     The payload from the SQLi_BCheck module was submitted successfully after the test. 
+            detail: "Potential File path traversal vulnerability detected. Please confirm it manually..
+                     The payload from the File_path_traversal_BCheck module was submitted successfully after the test. 
                      You must test manually to confirm this vulnerability!"
     end if

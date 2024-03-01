@@ -1,7 +1,7 @@
 metadata:
     language: v1-beta
-    name: "Bypass_Autentication"
-    description: "Bypass_Autentication"
+    name: "puncher_SQLi_bypass_authentication"
+    description: "puncher_SQLi_bypass_authentication"
     author: "nu11secur1tuy"
 
 run for each:
