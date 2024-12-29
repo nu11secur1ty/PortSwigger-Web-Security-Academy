@@ -3,7 +3,7 @@ metadata:
 	name: "RCE - Linux"
 	description: "Remote Code Execution - Linux"
 	author: "nu11secur1ty"
-	tags: "rce", "linux"
+	tags: "rce", "Linux"
 
 run for each:
 	payloads =
