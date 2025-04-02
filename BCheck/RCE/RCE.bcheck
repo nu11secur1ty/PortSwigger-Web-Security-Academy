@@ -1,6 +1,6 @@
 metadata:
     language: v1-beta
-    name: "RCE - Linux"
+    name: "RCE - Linux - Windows"
     description: "Remote Code Execution - Linux"
     author: "nu11secur1ty"
     tags: "RCE", "Linux", "Windows"
