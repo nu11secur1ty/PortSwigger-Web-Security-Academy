@@ -67,5 +67,5 @@ given any insertion point then
         report issue:
             severity: high
             confidence: tentative
-            detail: "SQL injection (SQLi)"
+            detail: "SQL injection (SQLi) You must check manually this vulnerability!!!"
     end if
