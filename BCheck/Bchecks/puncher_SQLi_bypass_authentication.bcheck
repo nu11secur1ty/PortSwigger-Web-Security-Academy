@@ -14,7 +14,7 @@ given query or body insertion point then
     if {check.response.body} matches "(SQL|Postgresql|Microsoft Sql|sql|postgresql|microsoft SQL)" then
         report issue:
             severity: high
-            confidence: firm
+            confidence: certain
             detail: `There is a change in response when {puncher} is injected.`
             remediation: "Potential SQLi detected. Please confirm it manually after you check the POST, GET, or other requests... 
                           The payload from the puncher_SQLi_bypass_authentication module was submitted successfully after the test. 
