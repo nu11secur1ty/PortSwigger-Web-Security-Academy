@@ -66,6 +66,6 @@ given any insertion point then
        "ODBC Driver" in {latest.response} then
         report issue:
             severity: high
-            confidence: tentative
+            confidence: certain
             detail: "SQL injection (SQLi) You must check manually this vulnerability!!!"
     end if
