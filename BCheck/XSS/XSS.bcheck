@@ -63,6 +63,7 @@ given any insertion point then
     if {payloads} in {latest.response} then
         report issue:
             severity: high
-            confidence: tentative
+            confidence: firm
             detail: "A cross-site scripting (XSS) vulnerability was found on this system! Please check it manually by reading carefully the POST or GET requests from this request."
+            remediation: "Ensure that the site does not directly request URLs from the proxy param or url param."
     end if
