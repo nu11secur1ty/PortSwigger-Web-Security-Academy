@@ -3,7 +3,7 @@ metadata:
     name: "XSS"
     description: "Cross-site scripting (XSS)"
     author: "nu11secur1ty"
-    tags: "XSS Reflected"
+    tags: "XSS Reflected", "XSS Dom", "XSS Stored"
 
 run for each:
     payloads =
