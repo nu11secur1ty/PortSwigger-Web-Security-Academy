@@ -64,6 +64,6 @@ given any insertion point then
         report issue:
             severity: high
             confidence: firm
-            detail: "A cross-site scripting (XSS) vulnerability was found on this system! Please check it manually by reading carefully the POST or GET requests from this request."
+            detail: "A cross-site scripting (XSS) vulnerability was found on this system! Please check it manually by reading carefully the POST or GET requests from this request. More information: https://portswigger.net/web-security/cross-site-scripting"
             remediation: "Ensure that the site does not directly request URLs from the proxy param or url param."
     end if
