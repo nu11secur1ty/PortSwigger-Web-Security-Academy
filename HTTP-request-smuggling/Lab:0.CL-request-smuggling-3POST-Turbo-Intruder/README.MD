@@ -1,4 +1,4 @@
-# Burp POST Body Smuggling Intruder Script – Documentation & Code
+# Burp POST Body Smuggling Intruder Script – Documentation
 
 **Author:** nu11secur1ty  
 **Year:** 2025  
