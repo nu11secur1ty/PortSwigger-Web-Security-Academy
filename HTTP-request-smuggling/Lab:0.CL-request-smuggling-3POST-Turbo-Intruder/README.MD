@@ -26,7 +26,7 @@ Purpose: Automate detection and exploitation of HTTP request smuggling vulnerabi
 
 ## 1. Introduction
 
-This script leverages **HTTP request smuggling** vulnerabilities to deliver a crafted payload through Burp Suite Intruder. It automates sending specially crafted HTTP requests with **Content-Length manipulations** to detect server desynchronization issues. The script monitors responses and stops automatically when the target executes the payload, printing a success message.
+This script leverages **HTTP request smuggling** vulnerabilities to deliver a crafted payload through Burp Suite Intruder. It automates sending specially crafted HTTP requests with **Content-Length manipulations** to detect server desynchronization issues. 
 
 ---
 
