@@ -1,4 +1,4 @@
-# Burp POST Body Smuggling Intruder Script – Documentation
+# Burp POST Body Smuggling Intruder Script – Documentation & Code
 
 **Author:** nu11secur1ty  
 **Year:** 2025  
@@ -43,7 +43,7 @@ Unlike previous versions, **the script does not automatically stop** after the p
 
 ## 3. Setup
 
-1. Place `burp_post_smuggling.py` in Burp Suite Extender scripts directory.  
+1. Place `0.CL-request-smuggling-XSS.py` in Burp Suite Extender scripts directory.  
 2. Configure Intruder to use this script as the payload engine.  
 3. Define the `host` variable dynamically using Burp’s target scope.  
 
