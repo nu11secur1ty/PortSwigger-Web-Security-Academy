@@ -70,4 +70,4 @@ def handleResponse(req, interesting):
     # Stop attack immediately after XSS is triggered
     if req.label == 'victim' and 'hgpov' in req.response:
         stop_attack = True
-        print("[+] Done, your exploit is finished!")
+        print("[+] Donne, your exploit is finished!")
