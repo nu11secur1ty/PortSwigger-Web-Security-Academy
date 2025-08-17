@@ -69,4 +69,4 @@ def handleResponse(req, interesting):
     if req.label == 'victim' and 'hgpov' in req.response:
         stop_attack = True
         req.engine.cancel()
-        print("[+] Donne, your exploit is finished!")
+        print("[+] Done, your exploit is finished!")
