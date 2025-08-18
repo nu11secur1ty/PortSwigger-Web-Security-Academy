@@ -170,5 +170,5 @@ if req.label == 'victim' and 'hgpov' in req.response:
 - 0.CL Lab examples and learning materials
 
 
-13. Full Python Script
-Find it on the www.... ;)
+13. Full Python Script by @nu11secur1ty
+
