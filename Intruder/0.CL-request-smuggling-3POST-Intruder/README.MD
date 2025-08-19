@@ -127,7 +127,7 @@ X: Y
 - Encodes an XSS payload in both HTTP/1.1 and HTTP/2 headers.
 - Integrated into kurnabiva2_revealed for desync exploitation.
 
-8. Attack Flow
+## 8. Attack Flow
 
 queueRequests:
 
@@ -139,13 +139,13 @@ Repeat until operator stops Intruder manually
 ```
 
 
-9. Response Handling
+## 9. Response Handling
 
 - Each response is added to the global table.
 - The script logs when the payload executes by detecting the marker hgpov in victim responses.
 - Does not stop automatically – operator must manually halt Intruder
 
-10. Stop Condition
+## 10. Stop Condition
 
 ```python
 if req.label == 'victim' and 'hgpov' in req.response:
@@ -157,20 +157,20 @@ if req.label == 'victim' and 'hgpov' in req.response:
 - Manual intervention required to stop attack.
 
 
-11. Security Considerations
+## 11. Security Considerations
 
 - Use only on authorized targets or in lab environments.
 - HTTP request smuggling can have unintended consequences on production systems.
 - Payloads may trigger XSS or other vulnerabilities; handle outputs safely.
 
 
-12. References
+## 12. References
 
 - PortSwigger Research: [HTTP/1 Must Die](https://portswigger.net/research/http1-must-die)
 - 0.CL Lab examples and learning materials
 
 
-13. Full Python Script by @nu11secur1ty
+## 13. Full Python Script by @nu11secur1ty
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
