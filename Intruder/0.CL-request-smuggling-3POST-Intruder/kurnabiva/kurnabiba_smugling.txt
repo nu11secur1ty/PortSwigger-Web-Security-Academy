@@ -13,9 +13,10 @@ User-Agent: foo
 Content-Type: application/x-www-form-urlencoded
 Connection: keep-alive
 
-GET /post?postId=8 HTTP/1.1
+GET /post?postId=7 HTTP/1.1
 User-Agent: a"/><script>alert(1)</script>
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 5
 
 x=1
+
