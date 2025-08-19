@@ -1,0 +1,21 @@
+POST /resources/css/anything HTTP/1.1
+Host: '''+host+'''
+Content-Type: application/x-www-form-urlencoded
+Connection: keep-alive
+Content-Length: %s
+
+OPTIONS / HTTP/1.1
+Content-Length: 123
+X: Y
+GET /404 HTTP/1.1
+Host: '''+host+'''
+User-Agent: foo
+Content-Type: application/x-www-form-urlencoded
+Connection: keep-alive
+
+GET /post?postId=8 HTTP/1.1
+User-Agent: a"/><script>alert(1)</script>
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 5
+
+x=1
