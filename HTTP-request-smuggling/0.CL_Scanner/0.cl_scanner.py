@@ -11,7 +11,7 @@ from datetime import datetime
 Professional 0.CL Request Smuggling Scanner
 Author: nu11secur1ty 2025
 Description: Detects likely and confirmed HTTP request smuggling vulnerabilities
-in POST/GET requests, including URL parameter fuzzing. Safe and non-destructive.
+in POST/GET requests, including automatic URL parameter fuzzing.
 """
 
 # ------------------- Console Colors -------------------
@@ -20,7 +20,7 @@ ORANGE = '\033[33m'
 GREEN = '\033[92m'
 RESET = '\033[0m'
 
-# ------------------- Base POST Payloads -------------------
+# ------------------- Base Payloads -------------------
 BASE_PAYLOADS = [
     ("CL-only baseline",
      "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 11\r\nConnection: close\r\n\r\nHELLO_WORLD",
@@ -133,39 +133,42 @@ pre {{ white-space: pre-wrap; word-wrap: break-word; }}
         f.write(html_content)
     print(f"\n✅ HTML report generated at {output_file}")
 
-# ------------------- Smuggling Check -------------------
+# ------------------- Smuggling Check with Parameter Fuzzing -------------------
 def check_smuggling(host, port, scheme, path='/', query=None, output_json=False):
     print(f"[*] Scanning {scheme}://{host}:{port}{path}...\n")
     results = []
     baseline_status = None
-    query_str = f"?{urlencode(query)}" if query else ''
-    full_path = f"{path}{query_str}"
 
-    # Loop through all payloads
-    for name, payload, description in PAYLOADS:
-        raw_request = payload.format(host=host, path=full_path)
-        response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme=='https'))
-        first_line = response.split('\r\n')[0] if response else '(no response)'
-        suspicious = '400' in first_line or '403' in first_line
-        confirmed = 'SMUGGL' in response
+    # Handle query string for parameter fuzzing
+    query = query or {}
+    fuzzed_paths = [f"{path}?{urlencode({k:v[0]})}" for k,v in query.items()] if query else [path]
 
-        color = RED if confirmed else ORANGE if suspicious else GREEN
-        print(f"--- Payload: {name} ---")
-        print(f"{color}Response: {first_line} (time: {resp_time:.3f}s){RESET}")
+    # For each path/query variant
+    for full_path in fuzzed_paths:
+        for name, payload, description in PAYLOADS:
+            raw_request = payload.format(host=host, path=full_path)
+            response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme=='https'))
+            first_line = response.split('\r\n')[0] if response else '(no response)'
+            suspicious = '400' in first_line or '403' in first_line
+            confirmed = 'SMUGGL' in response
 
-        results.append({
-            'payload': name,
-            'description': description,
-            'request': raw_request,
-            'response_line': first_line,
-            'suspicious': suspicious,
-            'confirmed_exploit': confirmed,
-            'likely_exploit': suspicious and not confirmed,
-            'response_time': resp_time
-        })
+            color = RED if confirmed else ORANGE if suspicious else GREEN
+            print(f"--- Payload: {name} | Path: {full_path} ---")
+            print(f"{color}Response: {first_line} (time: {resp_time:.3f}s){RESET}")
 
-        if name == 'CL-only baseline':
-            baseline_status = first_line
+            results.append({
+                'payload': name,
+                'description': description,
+                'request': raw_request,
+                'response_line': first_line,
+                'suspicious': suspicious,
+                'confirmed_exploit': confirmed,
+                'likely_exploit': suspicious and not confirmed,
+                'response_time': resp_time
+            })
+
+            if name == 'CL-only baseline':
+                baseline_status = first_line
 
     # Compare to baseline
     print('\n--- Baseline Comparison ---')
