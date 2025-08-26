@@ -14,7 +14,7 @@ from datetime import datetime
 # - Response timing measurement
 # - Console color-coded output
 # - HTML report generation with full POST requests and descriptions
-# - Automatic flagging of likely exploitable payloads
+# - Automatic flagging of likely and confirmed exploitable payloads
 
 TEST_PAYLOADS = [
     ("CL-only baseline",
@@ -78,6 +78,7 @@ TEST_PAYLOADS = [
 ]
 
 RED = '\033[91m'
+ORANGE = '\033[33m'
 GREEN = '\033[92m'
 RESET = '\033[0m'
 
@@ -114,8 +115,8 @@ body {{ font-family: Arial, sans-serif; }}
 table {{ border-collapse: collapse; width: 100%; }}
 th, td {{ border: 1px solid #ddd; padding: 8px; vertical-align: top; }}
 th {{ background-color: #f2f2f2; }}
-.suspicious {{ color: red; font-weight: bold; }}
-.likely {{ color: red; font-weight: bold; }}
+.likely {{ color: orange; font-weight: bold; }}
+.confirmed {{ color: red; font-weight: bold; }}
 .normal {{ color: green; }}
 pre {{ white-space: pre-wrap; word-wrap: break-word; }}
 </style>
@@ -128,12 +129,15 @@ pre {{ white-space: pre-wrap; word-wrap: break-word; }}
 """
 
     for r in results:
-        if r.get('likely_exploit', False):
+        if r.get('confirmed_exploit', False):
+            status_class = 'confirmed'
+            status_text = 'Confirmed Exploitable'
+        elif r.get('likely_exploit', False):
             status_class = 'likely'
             status_text = 'Likely Exploitable'
         else:
-            status_class = 'suspicious' if r.get('suspicious', False) else 'normal'
-            status_text = 'Potential Smuggling' if r.get('suspicious', False) else 'Normal'
+            status_class = 'normal'
+            status_text = 'Normal'
         response_time = f"{r['response_time']:.3f}" if r.get('response_time') else "N/A"
         html_content += f"<tr><td>{r['payload']}</td><td>{r['description']}</td><td><pre>{r['request']}</pre></td><td>{r['response_line']}</td><td class='{status_class}'>{status_text}</td><td>{response_time}</td></tr>\n"
 
@@ -153,9 +157,10 @@ def check_smuggling(host, port, scheme, output_json=False):
         raw_request = payload.format(host=host)
         response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme == 'https'))
         first_line = response.split('\r\n')[0] if response else '(no response)'
-        suspicious = ('400' in first_line or 'SMUGGL' in response or '403' in first_line)
+        suspicious = ('400' in first_line or '403' in first_line)
+        confirmed = 'SMUGGL' in response
 
-        color = RED if suspicious else GREEN
+        color = RED if confirmed else ORANGE if suspicious else GREEN
         print(f"--- Payload: {name} ---")
         print(f"{color}Response: {first_line} (time: {resp_time:.3f}s){RESET}")
 
@@ -165,23 +170,24 @@ def check_smuggling(host, port, scheme, output_json=False):
             'request': raw_request,
             'response_line': first_line,
             'suspicious': suspicious,
+            'confirmed_exploit': confirmed,
+            'likely_exploit': suspicious and not confirmed,
             'response_time': resp_time
         })
 
         if name == 'CL-only baseline':
             baseline_status = first_line
 
-    # Baseline comparison and likely exploit detection
     print('\n--- Baseline vs Smuggling Comparison ---')
     for r in results[1:]:
-        if baseline_status and r['response_line'] != baseline_status:
+        if baseline_status and r['response_line'] != baseline_status and not r.get('confirmed_exploit', False):
             r['likely_exploit'] = True
-            print(f"{RED}⚠️ {r['payload']} likely exploitable ({baseline_status} -> {r['response_line']}){RESET}")
+            print(f"{ORANGE}⚠️ {r['payload']} likely exploitable ({baseline_status} -> {r['response_line']}){RESET}")
+        elif r.get('confirmed_exploit', False):
+            print(f"{RED}⚠️ {r['payload']} confirmed exploitable{RESET}")
         else:
-            r['likely_exploit'] = False
             print(f"{GREEN}{r['payload']} response matches baseline{RESET}")
 
-    # HTML report
     script_dir = os.path.dirname(os.path.realpath(__file__))
     report_file = os.path.join(script_dir, '0cl_scan_report.html')
     generate_html_report(results, report_file)
@@ -213,3 +219,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
