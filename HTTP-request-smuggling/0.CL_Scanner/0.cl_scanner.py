@@ -20,7 +20,7 @@ ORANGE = '\033[33m'
 GREEN = '\033[92m'
 RESET = '\033[0m'
 
-# ------------------- Base Payloads -------------------
+# ------------------- Base POST Payloads -------------------
 BASE_PAYLOADS = [
     ("CL-only baseline",
      "POST /{path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: 11\r\nConnection: close\r\n\r\nHELLO_WORLD",
@@ -74,7 +74,7 @@ EXTRA_PAYLOADS = [
      "GET request with CL/TE conflict"),
 ]
 
-# Combine payloads
+# ------------------- Combined Payloads -------------------
 PAYLOADS = BASE_PAYLOADS + EXTRA_PAYLOADS
 
 # ------------------- Socket Request Sender -------------------
@@ -141,6 +141,7 @@ def check_smuggling(host, port, scheme, path='/', query=None, output_json=False)
     query_str = f"?{urlencode(query)}" if query else ''
     full_path = f"{path}{query_str}"
 
+    # Loop through all payloads
     for name, payload, description in PAYLOADS:
         raw_request = payload.format(host=host, path=full_path)
         response, resp_time = send_raw_request(host, port, raw_request, use_tls=(scheme=='https'))
@@ -166,7 +167,7 @@ def check_smuggling(host, port, scheme, path='/', query=None, output_json=False)
         if name == 'CL-only baseline':
             baseline_status = first_line
 
-    # Compare responses to baseline
+    # Compare to baseline
     print('\n--- Baseline Comparison ---')
     for r in results[1:]:
         if baseline_status and r['response_line'] != baseline_status and not r.get('confirmed_exploit'):
