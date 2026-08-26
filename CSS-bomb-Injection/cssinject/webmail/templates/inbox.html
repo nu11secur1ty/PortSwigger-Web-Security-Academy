@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Injection Lab - Inbox</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+        .container { max-width: 800px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .email-box { border-bottom: 1px solid #ddd; padding: 15px 0; }
+        .sender { font-weight: bold; color: #333; }
+        .subject { color: #555; }
+        .body { margin-top: 10px; background: #fafafa; padding: 10px; border-left: 3px solid #ff4757; }
+        form { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+        input, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #ff4757; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>🔥 CSS Injection Lab: Inbox</h2>
+        <hr>
+        {% for email in emails %}
+        <div class="email-box">
+            <div class="sender">From: {{ email.sender }}</div>
+            <div class="subject">Subject: {{ email.subject }}</div>
+            <!-- Vulnerable output renderer -->
+            <div class="body">{{ email.body | safe }}</div>
+        </div>
+        {% endfor %}
+
+        <h3>Send Malicious Email (CSS Injection)</h3>
+        <form action="/send" method="POST">
+            <input type="text" name="sender" placeholder="Sender (e.g., hacker@evil.com)" required>
+            <input type="text" name="subject" placeholder="Subject" required>
+            <textarea name="body" rows="4" placeholder="Inject your CSS payload here..." required></textarea>
+            <button type="submit">Send Email</button>
+        </form>
+    </div>
+</body>
+</html>
