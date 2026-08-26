@@ -1,0 +1,18 @@
+services:
+  webmail:
+    build: ./webmail
+    ports:
+      - "5000:5000"
+    networks:
+      - lab-net
+
+  attacker:
+    build: ./attacker
+    ports:
+      - "8000:8000"
+    networks:
+      - lab-net
+
+networks:
+  lab-net:
+    driver: bridge
